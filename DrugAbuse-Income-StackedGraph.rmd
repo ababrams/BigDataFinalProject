@@ -1,0 +1,20 @@
+    
+# library
+library(ggplot2)
+library(hrbrthemes)
+
+# create a dataset
+Income_Bracket <- c(rep("Less than 20,000", 4), rep("20,000 - 49,999", 4), rep("50,000 - 74,999", 4), rep("Over 75,000", 4))
+Drug <- rep(c("Opioids", "Meth", "Stimulants", "Hallucinogens"), 4)
+Number_Of_Users <- c(108,77,23,1443,133,72,34,2454,54,30,11,1328,74,29,20,2915)
+data <- data.frame(Income_Bracket, Drug, Number_Of_Users)
+data$Income <- factor(data$Income, levels = c("Less than 20,000", "20,000 - 49,999", "50,000 - 74,999", "Over 75,000"))
+ 
+# Small multiple
+ggplot(data, aes(fill=Drug, y=Number_Of_Users, x=Income_Bracket)) + 
+    geom_bar(position="stack", stat="identity") +
+    ggtitle("2019 Drug Abuse by Income Bracket") +
+    theme(plot.title = element_text(hjust = 0.5))
+    theme_ipsum() +
+    xlab("")
+    
